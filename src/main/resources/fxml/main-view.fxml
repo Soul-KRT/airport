@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.airport.controller.MainWindowController"
+            prefWidth="1000" prefHeight="650">
+
+    <top>
+        <VBox styleClass="app-header">
+            <Label text="Информационная система аэропорта" styleClass="header-title"/>
+        </VBox>
+    </top>
+
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+
+            <!-- Вкладка Рейсы -->
+            <Tab text="✈  Рейсы">
+                <VBox spacing="8" styleClass="tab-content">
+                    <padding><Insets top="10" right="10" bottom="5" left="10"/></padding>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Дата:"/>
+                        <DatePicker fx:id="flightDatePicker" promptText="Фильтр по дате"/>
+                        <Button text="Сбросить дату" onAction="#handleClearDateFilter" styleClass="btn-secondary"/>
+                        <Label text="Поиск:"/>
+                        <TextField fx:id="flightSearchField" promptText="Номер рейса, направление или гейт…" prefWidth="250"/>
+                    </HBox>
+
+                    <TableView fx:id="flightTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colFlightId" text="ID" prefWidth="45"/>
+                            <TableColumn fx:id="colFlightNumber" text="Номер рейса" prefWidth="110"/>
+                            <TableColumn fx:id="colDestination" text="Направление" prefWidth="160"/>
+                            <TableColumn fx:id="colDate" text="Дата" prefWidth="100"/>
+                            <TableColumn fx:id="colTime" text="Время" prefWidth="70"/>
+                            <TableColumn fx:id="colDuration" text="Длит. (мин)" prefWidth="90"/>
+                            <TableColumn fx:id="colGate" text="Гейт" prefWidth="70"/>
+                            <TableColumn fx:id="colStatus" text="Статус" prefWidth="120"/>
+                        </columns>
+                        <placeholder><Label text="Рейсы не найдены"/></placeholder>
+                    </TableView>
+
+                    <HBox spacing="10">
+                        <Button text="➕  Добавить рейс" onAction="#handleAddFlight" styleClass="btn-primary"/>
+                        <Button text="✏  Изменить рейс" onAction="#handleEditFlight" styleClass="btn-secondary"/>
+                        <Button text="🗑  Удалить рейс" onAction="#handleDeleteFlight" styleClass="btn-danger"/>
+                        <Button text="📤  Экспорт рейса" onAction="#handleExportFlight" styleClass="btn-secondary"/>
+                    </HBox>
+                </VBox>
+            </Tab>
+
+            <!-- Вкладка Пассажиры -->
+            <Tab text="👤  Пассажиры">
+                <VBox spacing="8" styleClass="tab-content">
+                    <padding><Insets top="10" right="10" bottom="5" left="10"/></padding>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Поиск:"/>
+                        <TextField fx:id="passengerSearchField" promptText="ФИО или номер билета…" prefWidth="300"/>
+                    </HBox>
+
+                    <TableView fx:id="passengerTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colPassId" text="ID" prefWidth="45"/>
+                            <TableColumn fx:id="colFullName" text="ФИО" prefWidth="180"/>
+                            <TableColumn fx:id="colTicket" text="Номер билета" prefWidth="130"/>
+                            <TableColumn fx:id="colPassport" text="Паспорт" prefWidth="120"/>
+                            <TableColumn fx:id="colSeat" text="Место" prefWidth="70"/>
+                            <TableColumn fx:id="colLinkedFlight" text="Рейс" prefWidth="200"/>
+                        </columns>
+                        <placeholder><Label text="Пассажиры не зарегистрированы"/></placeholder>
+                    </TableView>
+
+                    <HBox spacing="10">
+                        <Button text="➕  Зарегистрировать пассажира" onAction="#handleAddPassenger" styleClass="btn-primary"/>
+                        <Button text="✏  Изменить" onAction="#handleEditPassenger" styleClass="btn-secondary"/>
+                        <Button text="🗑  Удалить" onAction="#handleDeletePassenger" styleClass="btn-danger"/>
+                    </HBox>
+                </VBox>
+            </Tab>
+
+        </TabPane>
+    </center>
+
+    <bottom>
+        <HBox styleClass="app-footer" alignment="CENTER_LEFT" spacing="20">
+            <padding><Insets top="5" right="15" bottom="5" left="15"/></padding>
+            <Label text="Информационная система аэропорта  |  v1.0.0  |  ДонГУ, 2026" styleClass="footer-label"/>
+            <Hyperlink text="Помощь" onAction="#handleHelp" styleClass="footer-link"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

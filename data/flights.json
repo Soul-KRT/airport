@@ -1,0 +1,22 @@
+{
+  "flights" : [ {
+    "flightId" : 1,
+    "flightNumber" : "ZG-4456",
+    "destination" : "Москва - Донецк",
+    "departureDate" : "2026-04-17",
+    "departureTime" : "15:30:00",
+    "durationMin" : 60,
+    "gate" : "A2",
+    "status" : "Запланирован"
+  }, {
+    "flightId" : 2,
+    "flightNumber" : "AA-5534",
+    "destination" : "Москва - Житомир",
+    "departureDate" : "2026-04-21",
+    "departureTime" : "15:55:00",
+    "durationMin" : 60,
+    "gate" : "A2",
+    "status" : "Запланирован"
+  } ],
+  "nextId" : 3
+}

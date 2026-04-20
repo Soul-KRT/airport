@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.airport.controller.PassengerFormController"
+      spacing="14" prefWidth="480"
+      styleClass="form-root">
+    <padding><Insets top="20" right="25" bottom="20" left="25"/></padding>
+
+    <Label text="Данные пассажира" styleClass="form-title"/>
+
+    <GridPane hgap="10" vgap="10">
+        <Label text="ФИО:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="form-label"/>
+        <TextField fx:id="fullNameField" promptText="Иванов Иван Иванович" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="270"/>
+
+        <Label text="Номер билета:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="form-label"/>
+        <TextField fx:id="ticketNumberField" promptText="SU-1234-0001" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Паспорт:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="form-label"/>
+        <TextField fx:id="passportNumberField" promptText="4514 123456" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Место:" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="form-label"/>
+        <TextField fx:id="seatField" promptText="12A" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="Рейс:" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="form-label"/>
+        <ComboBox fx:id="flightCombo" GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="270"/>
+    </GridPane>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Отмена" onAction="#handleCancel" styleClass="btn-secondary"/>
+        <Button fx:id="saveButton" text="Сохранить" onAction="#handleSave" styleClass="btn-primary"/>
+    </HBox>
+</VBox>
