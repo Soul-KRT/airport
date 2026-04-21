@@ -65,6 +65,7 @@ echo [INFO] APP_JAR=%APP_JAR%
   --win-dir-chooser ^
   --win-upgrade-uuid "%UPGRADE_UUID%" ^
   --icon app.ico ^
+  --resource-dir jpackage-resources ^
   --verbose
 
 if errorlevel 1 exit /b 1
