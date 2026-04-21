@@ -318,7 +318,7 @@ public class MainWindowController {
        "Вкладка «Пассажиры»:\n" +
        "  – Добавить/Изменить/Удалить пассажира\n" +
        "  – Поиск по ФИО или номеру билета\n\n" +
-       "Данные хранятся в папке data/ рядом с приложением."
+       "Данные хранятся в папке %LOCALAPPDATA%/AirportIS/data/."
     );
     help.setResizable(true);
     help.showAndWait();

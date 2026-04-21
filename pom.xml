@@ -65,7 +65,7 @@
                             <mainClass>com.airport.AirportApplication</mainClass>
                         </manifest>
                     </archive>
-                    <finalName>AirportIS-1.0.0</finalName>
+                    <finalName>AirportIS-${project.version}</finalName>
                 </configuration>
             </plugin>
 
