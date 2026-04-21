@@ -8,12 +8,12 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class JsonStorage {
-  
-  private static final Path dataDir = Paths.get("data");
+  private static final Path dataDir = resolveDataDir();
   private static final ObjectMapper mapper;
   
   static {
@@ -22,6 +22,19 @@ public class JsonStorage {
     mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     mapper.enable(SerializationFeature.INDENT_OUTPUT);
     dataDir.toFile().mkdirs();
+  }
+  
+  private static Path resolveDataDir() {
+    String os = System.getProperty("os.name", "").toLowerCase();
+    if (os.contains("win")) {
+      String localAppData = System.getenv("LOCALAPPDATA");
+      if (localAppData != null && !localAppData.isBlank()) {
+        return Paths.get(localAppData, "AirportIS", "data");
+      }
+      String userHome = System.getProperty("user.home", ".");
+      return Paths.get(userHome, "AppData", "Local", "AirportIS", "data");
+    }
+    return Paths.get("data").toAbsolutePath().normalize();
   }
   
   public static <T extends Storeable> T load(String fileName, Class<T> type)
@@ -38,6 +51,7 @@ public class JsonStorage {
   public static <T extends Storeable> void save(String fileName, T data) {
     File dest = dataDir.resolve(fileName).toFile();
     try {
+      Files.createDirectories(dest.toPath().getParent());
       mapper.writeValue(dest, data);
     } catch (Exception e) {
       throw new RuntimeException("Ошибка сохранения данных: " + e.getMessage(), e);
