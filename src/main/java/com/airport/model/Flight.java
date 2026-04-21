@@ -6,9 +6,12 @@ import javafx.beans.property.*;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Flight implements com.airport.util.Storeable {
+  private static final DateTimeFormatter DATE_FMT = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+  private static final DateTimeFormatter TIME_FMT = DateTimeFormatter.ofPattern("HH:mm");
   
   private IntegerProperty flightId = new SimpleIntegerProperty();
   private StringProperty flightNumber = new SimpleStringProperty("");
@@ -135,5 +138,13 @@ public class Flight implements com.airport.util.Storeable {
   
   public StringProperty statusProperty() {
     return status;
+  }
+  
+  @Override
+  public String toString() {
+    return getFlightNumber() + " | " + getDestination()
+           + " | " + getDepartureDate().format(DATE_FMT)
+           + " " + getDepartureTime().format(TIME_FMT)
+           + " | Гейт: " + getGate();
   }
 }
